@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="grid.css" media="screen" title="bleh" charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+    </div>
+    <script>
+    var containerDiv = document.body.getElementsByClassName("container")[0];
+    document.body.setAttribute("onkeydown", "setActivewithKeyboard(event)");
+    var  snakebody= []
+    for(var i=0; i<100; i++)
+    {
+      var newCell = document.createElement("div");
+      newCell.className = "cell";
+      newCell.setAttribute("onclick", "setActive(this)");//this manda esa celda al active
+      var cellSpace = document.createTextNode(" ");
+      newCell.appendChild(cellSpace);
+      containerDiv.appendChild(newCell);
+    }
+
+
+
+    //activar con el click una celda
+    function setActive(cell)
+    {
+      var activeCells = document.body.getElementsByClassName("cell");
+      for(var i = 0; i<activeCells.length;i++)
+      {
+        activeCells[i].classList.remove("active");
+      }
+      cell.classList.add("active");
+    }
+
+    //mover con el teclado
+    /*
+    function setActivewithKeyboard(event)
+    {
+      var activeCells = document.body.getElementsByClassName("cell");
+      var activeCellNumber = -1;
+      for (var i = 0; i<activeCells.length; i++)
+      {
+        if(activeCells[i].classList.contains("active"))
+        {
+          activeCellNumber = i;
+          
+        }
+      }
+      var caso = event.keyCode;
+      switch(caso){
+        case 87: if(activeCellNumber-10>=0) {activeCells[activeCellNumber].classList.remove("active"); activeCells[activeCellNumber-10].classList.add("active")};
+        break;
+        case 65: if(activeCellNumber-1>=0 && (activeCellNumber)%10!=0) {activeCells[activeCellNumber].classList.remove("active"); activeCells[activeCellNumber-1].classList.add("active")};
+        break;
+        case 83: if(activeCellNumber+10<100) {activeCells[activeCellNumber].classList.remove("active"); activeCells[activeCellNumber+10].classList.add("active")};
+        break;
+        case 68: if(activeCellNumber+1<100 && (activeCellNumber+1)%10!=0) {activeCells[activeCellNumber].classList.remove("active"); activeCells[activeCellNumber+1].classList.add("active")};
+        break;
+        case -1:
+        break;
+        default:
+        break;
+      }
+    }
+    */
+
+    //mover filas y columnas solas
+    /*
+    var Even = 0;
+    setInterval(function(){
+      var allCells = document.body.getElementsByClassName("cell");
+      for(var i=0; i<allCells.length; i++)
+      {
+        
+        if((Even == 0 && i%2==0) || (Even == 1 && i%2!=0))
+        {
+          allCells[i].classList.add("active");
+        }
+        if((Even == 0 && i%2!=0) || (Even == 1 && i%2==0))
+        {
+          allCells[i].classList.remove("active");
+        }
+      }
+      if(Even == 0)
+        Even = 1;
+      else
+        Even = 0;
+    }, 500)
+    */
+    </script>
+  </body>
+</html>
